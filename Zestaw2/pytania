@@ -1,0 +1,5 @@
+1/2. Funkcje z rodziny exec powodują zakończenie pętli procesu na rzecz wywołania, więc powstanie n procesów potomnych (3 dla pytania 1)
+3. execl przyjmuje l-listę, a execv przyjmuje tablicę argumentów.
+4. init jest korzeniem drzewa procesów, przejmuje osierocone procesy. systemmd to menadzer systemu i usług.
+5. Procesy zombie to takie, których rodzic nie obsłuzył zakończenia (nie wywołał wait()/waitpid())
+6. Procesy osierocone to takie, których rodzic się zakończył przed ich własnym zakończeniem.

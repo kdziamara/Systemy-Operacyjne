@@ -1,0 +1,12 @@
+1. Jak działa funkcja fork()?
+    Funkcja fork() tworzy nowy proces zwracając 0 jezeli jestesmy w nowym procesie potomnym albo pid procesu potomnego jezeli zostalismy w procesie macierzystym.
+2. Ile powstaje procesów w zadaniu procesy i dlaczego?
+    Kazdy proces wykonuje swoją pętlę niezaleznie, więc powstaje 4+2+1 procesów 
+3. Ile procesów powstanie przy n-krotnym wywołaniu funkcji fork i dlaczego?
+    Budowane jest pełne drzewo binarne, a więc liczba wierzchołków w takim drzewie jest równa 2^(n) - 1
+4. Jak używając funkcji sleep i bez odwoływania się do funkcji wait() zapewnić aby procesy macierzyste kończyły się dopiero po procesach potomnych?
+    Zastąpić go funkcją sleep(2) wykonywaną w pętli waiting razy
+5. Jaką wartość zwraca open()?
+    Zwraca typ integer będący deskryptorem pliku lub zwraca -1 w przypadku błędu
+6. Jaką wartość zwaraca write(), read()?
+    Zwraca typ integer będący ilością zapisanych/odczytanych bajtów, 0 w przypadku końca pliku bądź -1 w przypadku błędu 
