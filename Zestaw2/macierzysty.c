@@ -14,7 +14,8 @@ int main(int argc, char *argv[]) {
             // wyświetlanie generacji
             sprintf(name, "gen: %d", gen_nr++);
             procinfo(name);
-            execl("./potomny.x", name);
+            char *const arguments[] = {name, (char*)0};
+            execv("./potomny.x", arguments);
         } else {
             waiting++;
         }
