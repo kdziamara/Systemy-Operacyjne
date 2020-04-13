@@ -2,7 +2,7 @@ CC = gcc
 CFLAGS = -std=c99 -Wall
 ZAD = procesy.x drzewo1.x drzewo2.x macierzysty.x potomny.x zombie.x orphan.x execute.x cleano
 
-.PHONY: all clean
+.PHONY: all clean cleano
 
 all: $(ZAD)
 
