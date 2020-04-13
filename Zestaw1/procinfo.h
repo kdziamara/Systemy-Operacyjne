@@ -7,6 +7,7 @@
 #include <sys/wait.h>
 
 #define PROCINFO_H
+#define _XOPEN_SOURCE 500
 
 int procinfo(const char*);
 
