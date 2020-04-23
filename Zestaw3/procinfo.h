@@ -5,6 +5,9 @@
 #include <sys/types.h>
 #include <string.h>
 #include <sys/wait.h>
+#include <errno.h>
+#include <stdlib.h>
+#include <signal.h>
 
 #define PROCINFO_H
 #define _XOPEN_SOURCE 500

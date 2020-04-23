@@ -1,6 +1,4 @@
 #include "procinfo.h"
-#include <stdlib.h>
-#include <signal.h>
 
 void ignore_handler(int sig) {
     printf("I'm doing nothing... :)\n");
