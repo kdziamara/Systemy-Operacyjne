@@ -7,6 +7,7 @@
 #include <sys/wait.h>
 #include <errno.h>
 #include <stdlib.h>
+#include <time.h>
 #include <signal.h>
 
 #define PROCINFO_H

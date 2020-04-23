@@ -1,24 +1,34 @@
 #include "procinfo.h"
 
 void handler(int sig) {
-    printf("Signal cached!");
-    exit(12);
+    printf("Signal catched by child!\n");
+}
+
+void lider_handler(int sig) {
+
 }
 
 int main(int argc, char *argv[]) {
-    procinfo(argv[0]);
-    int child = fork();
     int children = 4;
+    int child = fork();
     if (child) {
         // Proces macierzysty
+        procinfo("macierzysty");
+
+        int times = 0;
+        do {
+            kill(0, 0);
+            if (times > 5) return -1;
+            times++;
+            sleep(1);
+        } while (errno == ESRCH);
+
         int groupid = getpgid(child);
-        kill(-groupid, 0);
-        if (errno == ESRCH) {
-            return -1;
-        }
-        sleep(1);
-        kill(-groupid, SIGINT);
-        waitpid(child, NULL, 0);
+
+        kill(-groupid, SIGUSR1);
+        if (waitpid(child, NULL, 0) == -1) {
+            printf("ERROR\n");
+        }        
     } else {
         // Proces potomny
         setpgid(0, 0);
@@ -26,16 +36,22 @@ int main(int argc, char *argv[]) {
         for (int i = 0; i < children; i++) {
             if (fork() == 0) {
                 procinfo("potomne");
-                signal(SIGINT, handler);
+                signal(SIGUSR1, handler);
                 pause();
+                return rand();
             }
         }
-        signal(SIGINT, (void*)NULL);
+        signal(SIGUSR1, (void*)lider_handler);
         for (int i = 0; i < children; i++) {
             int status;
-            wait(&status);
-            printf("%d\n", status);
+            if (waitpid(-1, &status, 0) == -1) {
+                printf("ERROR\n");
+            }
+            if(WIFEXITED(status)) {
+                printf("Child process returned normally with status: %d\n", status);        
+            }
         }
+        sleep(1);
     }
     return 0;
 }
