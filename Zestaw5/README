@@ -1,0 +1,9 @@
+- semafory służą do synchronizacji pracy systemu na zasobach wspólnych dla np kilku procesów.
+- operacje:
+	- opuszczenie semafora (p) zmniejsza wartość semafora jeśli ta > 0. Jeśli jest równa 0 to blokuje się.
+	- podniesienie semafora (v) zwiększa wartość semafora jeśli ta > 0 lub jeśli == 0 ale nikt nie jest zabokowany. W przeciwnym wypadku odblokowuje czekającego.
+- Nazwane semafory tymaczaosowo można otworzyć znając ich nazwe. Znajduja sie w /dev/shm/
+- Biblioteka statyczna jest dołączana na etapie budowania programu. Pozwala programowi na samodzielne działanie.
+- biblioteke statyczna tworzy się komendą ar rv libsem.a sem.o (przykładowe nazwy) 
+	Aby podlinkować taka biblioteke, podczas kompilacji należy użyc komendy
+	gcc test.c -L. -lsem 
